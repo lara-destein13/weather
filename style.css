@@ -13,10 +13,10 @@
 }
 
 .day {
-    height: 120px;
     width: 120px;
     background-color: black;
     color: white;
+    padding: 5px;
 }
 
 #current-and-forecast {
