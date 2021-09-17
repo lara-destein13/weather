@@ -37,3 +37,16 @@
 #city {
     font-size: 2.0em;
 }
+
+#search-button {
+    background-color: lightblue;
+    color: white;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    padding: 10px;
+    text-align: center;
+}
+
+#search-input {
+    width: 100%;
+}
