@@ -11,3 +11,18 @@
     margin-bottom: 8px;
     padding: 10px;
 }
+
+.day {
+    height: 120px;
+    width: 120px;
+    background-color: black;
+    color: white;
+}
+
+#current-and-forecast {
+    margin-left: 20px;
+}
+
+.day{
+    margin-right: 20px;
+}
