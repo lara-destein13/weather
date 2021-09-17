@@ -3,3 +3,11 @@
     color: white;
     text-align: center;
 }
+
+.button {
+    width: 300px;
+    background-color: darkblue;
+    color: white;
+    margin-bottom: 8px;
+    padding: 10px;
+}
