@@ -27,13 +27,20 @@ function createAutoCompleter() {
     $('#search-input').autocomplete(options);
 }
 
-function selected() {
-    alert('selected');
-}
+
 
 function searchClicked() {
-    var text = document.getElementById('search-input').value
-    alert(text);
+    var text = document.getElementById('search-input').value;
+    for (let i = 0; i < cities.length; i++) {
+        var city = cities[i];
+        var name = city.name;
+        var state = city.state;
+        var cityAndState = `${name}, ${state}`;
+        console.log(cityAndState);
+        if (text === cityAndState) {
+            alert('found-it');
+        }
+    }
 }
 
 function main() {
