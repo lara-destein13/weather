@@ -34,30 +34,49 @@ function updateDay(dayNumber, data) {
     var temp = data.main.temp;
     var wind = data.wind.speed;
     var humidity = data.main.humidity;
+
     console.log(`date: ${date}`);
     console.log(`icon: ${icon}`);
     console.log(`temp: ${temp}`);
     console.log(`wind: ${wind}`);
     console.log(`humidity: ${humidity}`);
+
+    var dateId = `day-${dayNumber}-date`
+    var iconId = `day-${dayNumber}-icon`
+    var tempId = `day-${dayNumber}-temp`
+    var windId = `day-${dayNumber}-wind`
+    var humidityId = `day-${dayNumber}-humidity`
+
+    console.log(`dateId: ${dateId}`);
+    console.log(`iconId: ${iconId}`);
+    console.log(`tempId: ${tempId}`);
+    console.log(`windId: ${windId}`);
+    console.log(`humidityId: ${humidityId}`);
+   
+    setInnerHTML(dateId, date);
+    setInnerHTML(iconId, icon);
+    setInnerHTML(tempId, temp);
+    setInnerHTML(windId, wind);
+    setInnerHTML(humidityId, humidity);
 }
 
 async function getForecast(city, state, id) {
     var url = `http://api.openweathermap.org/data/2.5/forecast?id=${id}&appid=${apiKey}&units=imperial`;
     var response = await fetch(url);
     response = await response.json();
-    console.log('forecast:');
-    console.log(JSON.stringify(response, null, 4));
 
     var list = response.list;
+    var dayNumber = 0;
     for (var i = 0; i < list.length; i ++) {
         var listItem = list[i];
         var dateTime = listItem.dt_txt;
         if (dateTime.includes('12:00:00')) {
-            updateDay(i, listItem);
+            updateDay(dayNumber, listItem);
+            dayNumber += 1;
         }
     }
 }
-    
+
 async function getCurrentWeather(city, state, id) {
     var url = `http://api.openweathermap.org/data/2.5/weather?id=${id}&appid=${apiKey}&units=imperial`;
     var response = await fetch(url);
