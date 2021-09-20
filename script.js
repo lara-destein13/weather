@@ -27,6 +27,20 @@ function createAutoCompleter() {
     $('#search-input').autocomplete(options);
 }
 
+function updateDay(dayNumber, data) {
+    console.log(JSON.stringify(Object.keys(data)));
+    var date = data.dt_txt.replace(/ .*/, '');
+    var icon = 'xxx';
+    var temp = data.main.temp;
+    var wind = data.wind.speed;
+    var humidity = data.main.humidity;
+    console.log(`date: ${date}`);
+    console.log(`icon: ${icon}`);
+    console.log(`temp: ${temp}`);
+    console.log(`wind: ${wind}`);
+    console.log(`humidity: ${humidity}`);
+}
+
 async function getForecast(city, state, id) {
     var url = `http://api.openweathermap.org/data/2.5/forecast?id=${id}&appid=${apiKey}&units=imperial`;
     var response = await fetch(url);
@@ -39,7 +53,7 @@ async function getForecast(city, state, id) {
         var listItem = list[i];
         var dateTime = listItem.dt_txt;
         if (dateTime.includes('12:00:00')) {
-            console.log(dateTime);
+            updateDay(i, listItem);
         }
     }
 }
