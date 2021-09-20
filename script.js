@@ -160,4 +160,42 @@ function main() {
     showWeatherForCity('Nashville, TN');
 }
 
+function buttonClicked(number) {
+    var cities = localStorage.getItem('cities')
+    cities = JSON.parse(cities);
+    cityAndState = cities[number];
+    showWeatherForCity(cityAndState);
+}
+
+function button0() {
+    buttonClicked(0);
+}
+
+function button1() {
+    buttonClicked(1);
+}
+
+function button2() {
+    buttonClicked(2);
+}
+
+function button3() {
+    buttonClicked(3);
+}
+
+function button4() {
+    buttonClicked(4);
+}
+
+function main() {
+    createAutoCompleter();
+    setOnClick('search-button', searchClicked);
+    setOnClick('button0', button0);
+    setOnClick('button1', button1);
+    setOnClick('button2', button2);
+    setOnClick('button3', button3);
+    setOnClick('button4', button4);
+    showWeatherForCity('Nashville, TN');
+}
+
 main();
