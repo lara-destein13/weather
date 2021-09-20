@@ -33,6 +33,15 @@ async function getForecast(city, state, id) {
     response = await response.json();
     console.log('forecast:');
     console.log(JSON.stringify(response, null, 4));
+
+    var list = response.list;
+    for (var i = 0; i < list.length; i ++) {
+        var listItem = list[i];
+        var dateTime = listItem.dt_txt;
+        if (dateTime.includes('12:00:00')) {
+            console.log(dateTime);
+        }
+    }
 }
     
 async function getCurrentWeather(city, state, id) {
