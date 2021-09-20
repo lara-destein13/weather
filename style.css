@@ -50,3 +50,22 @@
 #search-input {
     width: 100%;
 }
+
+.ui-menu {
+    width: 200px;
+}
+    
+.ui-menu .ui-menu-item {
+    background-color: darkblue;
+    color: white;
+    padding-left: 8px;
+}
+    
+.ui-helper-hidden-accessible {
+    display: none;
+}
+    
+    
+
+    
+    
