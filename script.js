@@ -87,7 +87,7 @@ async function getCurrentWeather(city, state, id) {
     var temp = response.main.temp;
     var wind = response.wind.speed;
     var humidity = response.main.humidity;
-    var uv = 'xxx';
+    var uv = 'uv';
 
     setInnerHTML('city', `${city}, ${state}`);
     setInnerHTML('temp', temp);
@@ -96,7 +96,46 @@ async function getCurrentWeather(city, state, id) {
     setInnerHTML('uv', uv);
 }
 
+function updateButtons(cityAndState) {
+    var cities = localStorage.getItem('cities')
+
+    if (cities != null) {
+        cities = JSON.parse(cities);
+    } else {
+        cities = [];
+    }
+
+    for (var i = 0; i < cities.length; i++) {
+        if (cities[i] === cityAndState) {
+            cities.splice(i, 1);
+        }
+    }
+
+    cities.unshift(cityAndState);
+
+    while (cities.length < 5) {
+        cities.push('&nbsp;');
+    }
+
+    while (cities.length > 5) {
+        cities.pop();
+    }
+
+    for (var i = 0; i < 5; i++) {
+        var id = `button${i}`;
+        setInnerHTML(id, cities[i]);
+    }
+
+    cities = JSON.stringify(cities);
+    console.log(cities);
+
+    localStorage.setItem('cities', cities);
+}
+
+
+
 function showWeatherForCity(selectedCityAndState) {
+    updateButtons(selectedCityAndState);
     for (let i = 0; i < cities.length; i++) {
         var city = cities[i];
         var name = city.name;
