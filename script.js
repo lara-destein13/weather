@@ -83,6 +83,17 @@ async function getCurrentWeather(city, state, id) {
     response = await response.json();
     console.log('current weather:');
     console.log(JSON.stringify(response, null, 4));
+
+    var temp = response.main.temp;
+    var wind = response.wind.speed;
+    var humidity = response.main.humidity;
+    var uv = 'xxx';
+
+    setInnerHTML('city', `${city}, ${state}`);
+    setInnerHTML('temp', temp);
+    setInnerHTML('wind', wind);
+    setInnerHTML('humidity', humidity);
+    setInnerHTML('uv', uv);
 }
 
 function searchClicked() {
@@ -95,7 +106,7 @@ function searchClicked() {
         var cityAndState = `${name}, ${state}`;
         if (text === cityAndState) {
             alert('found-it')
-            // getCurrentWeather(city, state, id);
+            getCurrentWeather(city, state, id);
             getForecast(city, state, id);
         }
     }
