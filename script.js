@@ -1,10 +1,22 @@
+// Note that this program uses the 
+// city information in the file cities.js. The cities file 
+// from OpenWeather was huge, so I asked a friend to create 
+// a similar file that had only US cities. It's much smaller 
+// and has 90,000 cities.
+
 var apiKey = 'b671a94b0a5fb7d77df8e0def5fb933b'
 
+// This is a simple utility function that 
+// finds a DOM element with id 'id', and sets its innerHTMLM 
+// to the value in 'value'.
 function setInnerHTML(id, value) {
     var element = document.getElementById(id);
     element.innerHTML = value;
 }
-  
+
+// This is a simple utility function that 
+// finds a DOM element with id 'id', and attaches click 
+//handler function 'func'.
 function setOnClick(id, func) {
     var element = document.getElementById(id);
     element.onclick = func;
@@ -48,7 +60,7 @@ function updateDay(dayNumber, data) {
 }
 
 async function getCurrentWeather(city, state, id) {
-    var url = `http://api.openweathermap.org/data/2.5/weather?id=${id}&appid=${apiKey}&units=imperial`;
+    var url = `https://api.openweathermap.org/data/2.5/weather?id=${id}&appid=${apiKey}&units=imperial`;
     var response = await fetch(url);
     response = await response.json();
     console.log('current weather:');
@@ -67,7 +79,7 @@ async function getCurrentWeather(city, state, id) {
 }
 
 async function getForecast(city, state, id) {
-    var url = `http://api.openweathermap.org/data/2.5/forecast?id=${id}&appid=${apiKey}&units=imperial`;
+    var url = `https://api.openweathermap.org/data/2.5/forecast?id=${id}&appid=${apiKey}&units=imperial`;
     var response = await fetch(url);
     response = await response.json();
 
