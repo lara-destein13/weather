@@ -28,18 +28,11 @@ function createAutoCompleter() {
 }
 
 function updateDay(dayNumber, data) {
-    console.log(JSON.stringify(Object.keys(data)));
     var date = data.dt_txt.replace(/ .*/, '');
     var icon = 'icon';
     var temp = data.main.temp;
     var wind = data.wind.speed;
     var humidity = data.main.humidity;
-
-    console.log(`date: ${date}`);
-    console.log(`icon: ${icon}`);
-    console.log(`temp: ${temp}`);
-    console.log(`wind: ${wind}`);
-    console.log(`humidity: ${humidity}`);
 
     var dateId = `day-${dayNumber}-date`
     var iconId = `day-${dayNumber}-icon`
@@ -47,17 +40,30 @@ function updateDay(dayNumber, data) {
     var windId = `day-${dayNumber}-wind`
     var humidityId = `day-${dayNumber}-humidity`
 
-    console.log(`dateId: ${dateId}`);
-    console.log(`iconId: ${iconId}`);
-    console.log(`tempId: ${tempId}`);
-    console.log(`windId: ${windId}`);
-    console.log(`humidityId: ${humidityId}`);
-   
     setInnerHTML(dateId, date);
     setInnerHTML(iconId, icon);
-    setInnerHTML(tempId, temp);
-    setInnerHTML(windId, wind);
-    setInnerHTML(humidityId, humidity);
+    setInnerHTML(tempId, `Temp: ${temp} F`);
+    setInnerHTML(windId, `Wind: ${wind} MPH`);
+    setInnerHTML(humidityId, `Humidity: ${humidity} %`);
+}
+
+async function getCurrentWeather(city, state, id) {
+    var url = `http://api.openweathermap.org/data/2.5/weather?id=${id}&appid=${apiKey}&units=imperial`;
+    var response = await fetch(url);
+    response = await response.json();
+    console.log('current weather:');
+    console.log(JSON.stringify(response, null, 4));
+
+    var temp = response.main.temp;
+    var wind = response.wind.speed;
+    var humidity = response.main.humidity;
+    var uv = 'uv';
+
+    setInnerHTML('city', `${city}, ${state}`);
+    setInnerHTML('temp', `Temp: ${temp} F`);
+    setInnerHTML('wind', `Wind: ${wind} MPH`);
+    setInnerHTML('humidity', `Humidity: ${humidity} %`);
+    setInnerHTML('uv', `UV Index: ___`);
 }
 
 async function getForecast(city, state, id) {
@@ -75,25 +81,6 @@ async function getForecast(city, state, id) {
             dayNumber += 1;
         }
     }
-}
-
-async function getCurrentWeather(city, state, id) {
-    var url = `http://api.openweathermap.org/data/2.5/weather?id=${id}&appid=${apiKey}&units=imperial`;
-    var response = await fetch(url);
-    response = await response.json();
-    console.log('current weather:');
-    console.log(JSON.stringify(response, null, 4));
-
-    var temp = response.main.temp;
-    var wind = response.wind.speed;
-    var humidity = response.main.humidity;
-    var uv = 'uv';
-
-    setInnerHTML('city', `${city}, ${state}`);
-    setInnerHTML('temp', temp);
-    setInnerHTML('wind', wind);
-    setInnerHTML('humidity', humidity);
-    setInnerHTML('uv', uv);
 }
 
 function updateButtons(cityAndState) {
