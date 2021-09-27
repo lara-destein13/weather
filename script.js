@@ -1,4 +1,5 @@
-var apiKey = 'b671a94b0a5fb7d77df8e0def5fb933b'
+var apiKey = 'b671a94b0a5fb7d77df8e0def5fb933b';
+var autocomplete = null;
 
 // A simple utility function that finds a DOM element with id 'id', 
 // and sets its innerHTML to the value in 'value';
@@ -18,20 +19,16 @@ function setOnClick(id, func) {
 // strings for the form 'City, ST'. Then tell JQuery to attach its 
 // autocompleter functionality to our city search input element. 
 function createAutoCompleter() {
-    var cityAndStateArray = [];
+    var options = [];
     for (var i = 0; i < cities.length; i += 1) {
         var city = cities[i];
         var name = city.name;
         var state = city.state;
         var cityAndState = `${name}, ${state}`;
-        cityAndStateArray.push(cityAndState);
+        options.push(cityAndState);
     }
 
-    var options = {
-        source: cityAndStateArray,
-    };
-
-    $('#search-input').autocomplete(options);
+    $('#search-input').autocomplete({ source: options });
 }
 
 // I have five days in my HTML. This function populates the five 
