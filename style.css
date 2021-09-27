@@ -1,16 +1,24 @@
 #header {
     background-color:darkblue;
     color: white;
+    font-size: 1.5em;
+    padding: 10px;
     text-align: center;
 }
 
 .button {
-    width: 300px;
     background-color: darkblue;
+    border-radius: 10px;
     color: white;
     margin-bottom: 8px;
     padding: 10px;
+    width: 300px;
 }
+
+.button:hover {
+    background-color: deepskyblue;
+}
+
 
 .day {
     width: 140px;
@@ -39,12 +47,17 @@
 }
 
 #search-button {
-    background-color: lightblue;
+    background-color: dodgerblue;
+    border-radius: 10px;
     color: white;
     margin-bottom: 8px;
     margin-top: 8px;
     padding: 10px;
     text-align: center;
+}
+
+#search-button:hover {
+    background-color: deepskyblue;
 }
 
 #search-input {
