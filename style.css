@@ -6,6 +6,21 @@
     text-align: center;
 }
 
+.green-span {
+    background-color: green;
+    color: white;  
+}
+
+.yellow-span {
+    background-color: yellow;
+    color: black;  
+}
+
+.red-span {
+    background-color: red;
+    color: white;    
+}
+
 .button {
     background-color: darkblue;
     border-radius: 10px;

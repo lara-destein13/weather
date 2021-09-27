@@ -76,12 +76,23 @@ function setCurrentWeather(city, state, weather) {
     var wind = weather.wind_speed;
     var humidity = weather.humidity;
     var uvi = weather.uvi;
+
+    var span 
+    if (uvi < 10) {
+        span = `<span class="green-span">${uvi}</span>`;     
+    } else if (uvi < 20) {
+        span = `<span class="yellow-span">${uvi}</span>`; 
+    } else { 
+        span = `<span class="red-span">${uvi}</span>`; 
+    }
     
+    console.log(span)
+
     setInnerHTML('city', `${city}, ${state}`);
     setInnerHTML('temp', `Temp: ${temp} F`);
     setInnerHTML('wind', `Wind: ${wind} MPH`);
     setInnerHTML('humidity', `Humidity: ${humidity} %`);
-    setInnerHTML('uv', `UV Index: ${uvi}`);
+    setInnerHTML('uv', `UV Index: ${span}`);
 }
 
 // The HTMl has five 'day' divs.  This function is called to update
@@ -92,13 +103,8 @@ function setDailyWeather(dayNumber, weather) {
     var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     var day = days[date.getDay()];
 
-    console.log(JSON.stringify(weather, null, 4));
-
     var url = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
     var icon = `<img src="${url}" height="40" width="40">`;
-
-    console.log('xxx icon');
-    console.log(icon);
 
     var temp = weather.temp.day;
     var wind = weather.wind_speed;
